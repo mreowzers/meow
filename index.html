@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>I LOVE FURRY FEMBOYSSSS:3 </title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slot Machine</title>
   <style>
     body {
-      cursor: url('cursor.cur'), auto;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #8b004f, #2c001e);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #ffff
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
     }
-
-    img {
-      max-width: 90%;
-      max-height: 70vh;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    .slot {
+      display: inline-block;
+      font-size: 40px;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      border: 2px solid #333;
+      margin: 5px;
     }
-
-    .button {
-      margin-top: 30px;
-      padding: 14px 28px;
-      font-size: 18px;
-      text-decoration: none;
-      color: #fff;
-      background-color: #ff4fa2;
-      border: none;
-      border-radius: 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .button:hover {
-      background-color: #ff1f88;
-      transform: translateY(-2px);
+    #spinButton {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 20px;
     }
   </style>
 </head>
 <body>
-  <img src="IMG_3359.jpg" alt="meow">
-  <a href="https://discord.com/invite/113377x" class="button">click for furry femboys UwU</a>
+  <h1>🎰 Slot Machine</h1>
+  <div id="slots">
+    <div class="slot" id="slot1">🍒</div>
+    <div class="slot" id="slot2">🍋</div>
+    <div class="slot" id="slot3">🍊</div>
+  </div>
+  <br />
+  <button id="spinButton">Spin!</button>
+
+  <script>
+    const symbols = ["🍒", "🍋", "🍊", "🍉", "⭐", "7️⃣"];
+
+    function getRandomSymbol() {
+      return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+
+    document.getElementById("spinButton").addEventListener("click", () => {
+      const slots = [document.getElementById("slot1"), document.getElementById("slot2"), document.getElementById("slot3")];
+
+      let spins = 20;
+      let interval = setInterval(() => {
+        slots.forEach(slot => slot.textContent = getRandomSymbol());
+        spins--;
+        if (spins <= 0) clearInterval(interval);
+      }, 100);
+    });
+  </script>
 </body>
 </html>
