@@ -2,55 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Slot Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Real Slot Machine</title>
   <style>
     body {
-      font-family: sans-serif;
+      background: radial-gradient(circle, #222, #000);
+      font-family: 'Arial', sans-serif;
+      color: white;
       text-align: center;
-      padding: 50px;
+      padding: 60px;
     }
-    .slot {
-      display: inline-block;
-      font-size: 40px;
-      width: 60px;
-      height: 60px;
-      line-height: 60px;
-      border: 2px solid #333;
-      margin: 5px;
+
+    .machine {
+      background: #333;
+      border: 8px solid #888;
+      border-radius: 20px;
+      width: 320px;
+      margin: 0 auto;
+      padding: 20px;
+      box-shadow: 0 0 30px #000 inset;
     }
+
+    .reels {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+
+    .reel {
+      width: 80px;
+      height: 80px;
+      background: #111;
+      border: 4px solid #555;
+      border-radius: 12px;
+      font-size: 48px;
+      line-height: 80px;
+      box-shadow: inset 0 0 10px #000;
+    }
+
     #spinButton {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 20px;
+      background: linear-gradient(to bottom, #f00, #900);
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 10px 30px;
+      border-radius: 50px;
+      box-shadow: 0 5px #600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #spinButton:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px #600;
     }
   </style>
 </head>
 <body>
-  <h1>🎰 Slot Machine</h1>
-  <div id="slots">
-    <div class="slot" id="slot1">🍒</div>
-    <div class="slot" id="slot2">🍋</div>
-    <div class="slot" id="slot3">🍊</div>
+  <h1>🎰 Classic Slot Machine</h1>
+  <div class="machine">
+    <div class="reels">
+      <div class="reel" id="slot1">🍒</div>
+      <div class="reel" id="slot2">🍋</div>
+      <div class="reel" id="slot3">🍉</div>
+    </div>
+    <button id="spinButton">🎲 Spin</button>
   </div>
-  <br />
-  <button id="spinButton">Spin!</button>
 
   <script>
-    const symbols = ["🍒", "🍋", "🍊", "🍉", "⭐", "7️⃣"];
-
-    function getRandomSymbol() {
-      return symbols[Math.floor(Math.random() * symbols.length)];
-    }
+    const symbols = ["🍒", "🍋", "🍉", "🍇", "7️⃣", "⭐", "🔔"];
+    const slots = [
+      document.getElementById("slot1"),
+      document.getElementById("slot2"),
+      document.getElementById("slot3")
+    ];
 
     document.getElementById("spinButton").addEventListener("click", () => {
-      const slots = [document.getElementById("slot1"), document.getElementById("slot2"), document.getElementById("slot3")];
-
-      let spins = 20;
+      let spinCount = 20;
       let interval = setInterval(() => {
-        slots.forEach(slot => slot.textContent = getRandomSymbol());
-        spins--;
-        if (spins <= 0) clearInterval(interval);
+        slots.forEach(slot => {
+          slot.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        });
+        spinCount--;
+        if (spinCount === 0) clearInterval(interval);
       }, 100);
     });
   </script>
