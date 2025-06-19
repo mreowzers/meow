@@ -1,165 +1,297 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>meow UwU</title>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="" type="image/png"> </head><body>//hinzufügen!
+  <title>ecstacy.dev - CS2 Cheat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;display=swap" rel="stylesheet">
   <style>
-    body {
-      background: url('https://www.transparenttextures.com/patterns/fleur-de-lis.png'), #10204a;
-      font-family: Arial, sans-serif;
-      color: #fff;
+
+    .site-footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
       text-align: center;
-      padding: 20px;
+    }
+    .legal-nav a {
+      color: #da70d6;
+      margin: 0 8px;
+      text-decoration: none;
+      position: relative;
+    }
+    .legal-nav a::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -2px;
+      height: 2px;
+      background: #da70d6;
+      box-shadow: 0 0 8px #da70d6;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: center;
+    }
+    .legal-nav a:hover::after { transform: scaleX(1); }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    html, body {
+      font-size: 10px;
+      overflow: auto;
     }
 
-    .slot-container {
-      display: inline-block;
-      background: #000;
-      padding: 10px;
-      border: 5px solid #f4d03f;
-      border-radius: 12px;
-      box-shadow: 0 0 10px #000;
-    }
-
-    .reels {
-      display: flex;
-      gap: 5px;
-    }
-
-    .reel {
-      background: #fff;
-      width: 100px;
-      height: 300px;
-      display: grid;
-      grid-template-rows: repeat(3, 1fr);
-      align-items: center;
-      border: 2px solid #000;
-      box-shadow: inset 0 0 10px #999;
-      font-size: 48px;
-    }
-
-    .symbol {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    img.jackpot {
-      width: 60px;
+    .hero {
       height: auto;
-      display: block;
+      padding-top: -220px;
+      padding-bottom: 40px;
+      justify-content: flex-start;
     }
 
-    .panel {
-      margin-top: 20px;
-      background: #222;
-      padding: 10px;
-      border-radius: 10px;
-      display: inline-block;
+    .hero h1 {
+      font-size: 1.2rem;
     }
 
-    .panel span {
-      margin: 0 15px;
-      font-size: 18px;
+    .hero p {
+      font-size: 0.8rem;
+      margin-top: -20px;
     }
 
-    .start-btn {
-      margin-top: 10px;
-      padding: 10px 30px;
-      font-size: 20px;
-      background: limegreen;
-      border: none;
-      color: white;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
+    .buttons {
+      margin-top: 15px;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      padding: 0 10px;
     }
 
-    .start-btn:active {
-      transform: translateY(2px);
+    .btn {
+      padding: 8px 12px;
+      font-size: 0.7rem;
+      width: 100%;
+      max-width: 160px;
+      margin: 0 auto;
     }
+
+    .pill {
+      font-size: 12px;
+    }
+
+    #pacman-container {
+      width: 24px;
+      height: 24px;
+    }
+
+    .footer {
+      bottom: 5px;
+    }
+
+    .footer a {
+      font-size: 0.6rem;
+    }
+  }
+
+  /* -------------------  Desktop & Global Styles  ------------------- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; font-family: 'Orbitron', sans-serif; overflow: hidden; background: #000; }
+  body { background: linear-gradient(135deg, #0d0b1e, #1f003c); position: relative; }
+  .gradient-shift { position: absolute; top: 0; left: 0; width: 200%; height: 200%; background: radial-gradient(circle at 20% 20%, #9b4dff, transparent 40%), radial-gradient(circle at 80% 80%, #ff00ff, transparent 50%); animation: moveGradient 10s linear infinite; z-index: 0; }
+  @keyframes moveGradient { 0% { transform: translate(0,0); } 50% { transform: translate(-25%, -25%); } 100% { transform: translate(0,0); } }
+
+  /* Game Area */
+  #game-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+
+  /* Pac‑Man Container with Inline SVG */
+  #pacman-container { position: absolute; width: 64px; height: 64px; transform-origin: center; }
+  svg.pacman { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+  svg.pacman.closed { display: none; }
+
+  /* Pills as Emoji */
+  .pill { position: absolute; font-size: 24px; transform: translate(-50%, -50%); user-select: none; }
+
+  /* Hero & Buttons */
+  .hero { position: relative; z-index: 2; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff; padding: 0 20px; }
+  .hero h1 { font-size: 4rem; background: linear-gradient(90deg, #9b4dff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: glowText 2s ease-in-out infinite alternate; }
+  @keyframes glowText { 0% { filter: drop-shadow(0 0 10px #9b4dff); } 100% { filter: drop-shadow(0 0 20px #ff00ff); } }
+  .hero p { margin-top: 20px; font-size: 1.2rem; opacity: 0.8; }
+  .buttons { margin-top: 40px; display: flex; gap: 20px; }
+  .btn { padding: 15px 30px; font-size: 1rem; font-weight: bold; text-decoration: none; border: 2px solid transparent; border-radius: 50px; transition: 0.3s; }
+  .btn--login { background: linear-gradient(45deg, #9b4dff, #ff00ff); color: #000; }
+  .btn--login:hover { background: #fff; color: #1f003c; box-shadow: 0 0 15px rgba(255,0,255,0.6); }
+  .btn--discord { background: transparent; border-color: #7289da; color: #7289da; }
+  .btn--discord:hover { background: #7289da; color: #fff; box-shadow: 0 0 15px rgba(114,137,218,0.6); }
+
+  /* Footer */
+  .footer { position: absolute; bottom: 20px; width: 100%; text-align: center; z-index: 2; }
+  .footer a { color: #9b4dff; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+  .footer a:hover { color: #ff00ff; text-shadow: 0 0 8px #ff00ff; }
   </style>
-</head>
-<body>
 
-  <h1>🎰 Jackpot Slot Machine</h1>
-  <div class="slot-container">
-    <div class="reels" id="reels"></div>
-    <div class="panel">
-      <span>LINES: 20</span>
-      <span>TOTAL BET: £0.20</span>
-      <span>CREDITS: £75.40</span><br/>
-      <button class="start-btn" onclick="spin()">START</button>
+
+  <div class="gradient-shift"></div>
+  <div id="game-area">
+    <div id="pacman-container" style="transform: translate(651.95px, 717.57px) rotate(0.316446rad);">
+      <!-- Open Mouth Pac‑Man -->
+      <svg class="pacman open" viewBox="0 0 64 64" style="display: block;">
+        <path d="M32 32 L64 12 A32 32 0 1 0 64 52 Z" fill="#ffeb3b"></path>
+        <circle cx="42" cy="20" r="6" fill="#000"></circle>
+      </svg>
+      <!-- Closed Mouth Pac‑Man -->
+      <svg class="pacman closed" viewBox="0 0 64 64" style="display: none;">
+        <circle cx="32" cy="32" r="32" fill="#ffeb3b"></circle>
+        <circle cx="42" cy="20" r="6" fill="#000"></circle>
+      </svg>
+    </div>
+  <div class="pill" style="color: rgb(30, 144, 255); left: 80.7899px; top: 857.04px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 732.233px; top: 765.381px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 1850.34px; top: 273.968px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 1573.5px; top: 712.954px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 1903.11px; top: 727.593px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 1588.18px; top: 36.7133px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 985.982px; top: 335.083px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 61.7858px; top: 866.893px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 220.803px; top: 898.243px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 1309.56px; top: 31.155px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 524.189px; top: 903.353px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 1036.4px; top: 37.0125px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 824.078px; top: 768.71px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 746.06px; top: 119.903px;">💊</div><div class="pill" style="color: rgb(30, 144, 255); left: 541.441px; top: 126.118px;">💊</div></div>
+
+  <div class="hero">
+    <h1>ecstacy.dev</h1>
+    <p>Your ultimate CS2 cheat – precision, speed, victory!</p>
+    <div class="buttons">
+      <a href="/login" class="btn btn--login">Login</a>
+      <a href="https://discord.gg/ecstacy-dev" class="btn btn--discord">Join Discord</a>
     </div>
   </div>
+ <footer class="site-footer">
+    <nav class="legal-nav">
+      <a href="../imprint">Imprint</a> |
+      <a href="../privacy">Privacy Policy</a> |
+      <a href="../terms">Terms &amp; Conditions</a>
+    </nav>
+  </footer>
+
 
   <script>
-    const jackpotImage = '<img src="https://i.imgur.com/FmGZyXP.png" alt="Jackpot" class="jackpot" />';
-    const symbols = [
-      "🍒", "🍋", "🍇", "🔔", "7️⃣", "💎",
-      "J", "Q", "K", "10",
-      jackpotImage
-    ];
 
-    const reelsContainer = document.getElementById("reels");
+  const container = document.getElementById('pacman-container');
+  const openSVG   = container.querySelector('svg.open');
+  const closedSVG = container.querySelector('svg.closed');
 
-    function getRandomSymbol() {
-      return symbols[Math.floor(Math.random() * symbols.length)];
-    }
+  // Keep track of viewport size
+  let W = window.innerWidth,
+      H = window.innerHeight;
+  window.addEventListener('resize', () => {
+    W = window.innerWidth;
+    H = window.innerHeight;
+  });
 
-    function createReels() {
-      reelsContainer.innerHTML = '';
-      for (let i = 0; i < 5; i++) {
-        const reel = document.createElement('div');
-        reel.className = 'reel';
-        for (let j = 0; j < 3; j++) {
-          const sym = document.createElement('div');
-          sym.className = 'symbol';
-          sym.innerHTML = getRandomSymbol();
-          reel.appendChild(sym);
-        }
-        reelsContainer.appendChild(reel);
+  // Pac‑Man state
+  const pacman = {
+    x: W / 2,
+    y: H / 2,
+    r: 32,
+    speed: 3,
+    dir: { x: 1, y: 0 }
+  };
+
+  // Pills state
+  let pills   = [];
+  let isEating = false;
+
+  /**
+   * Spawns a single moving pill at a random location.
+   */
+  function spawnPill () {
+    const p = document.createElement('div');
+    p.className   = 'pill';
+    p.textContent = '💊';
+    p.style.color = '#1E90FF';
+
+    // Custom properties (not CSS)
+    p.x  = Math.random() * W;
+    p.y  = Math.random() * H;
+    p.vx = (Math.random() - 0.5) * 2; // random velocity
+    p.vy = (Math.random() - 0.5) * 2;
+
+    document.getElementById('game-area').appendChild(p);
+    pills.push(p);
+  }
+
+  // Initial pills
+  for (let i = 0; i < 15; i++) spawnPill();
+  // Respawn pills occasionally so there are always at least 5
+  setInterval(() => { if (pills.length < 5) spawnPill(); }, 3000);
+
+  /**
+   * Handles the moment Pac‑Man eats a pill.
+   */
+  function handleEat (pill) {
+    isEating = true;
+    pill.remove();
+    pills = pills.filter(x => x !== pill);
+    spawnPill();
+
+    // Keep Pac‑Man closed for a short bite animation
+    setTimeout(() => { isEating = false; }, 150);
+  }
+
+  /**
+   * The main animation/game loop (executed every frame).
+   */
+  function update () {
+    // 1️⃣ Move pills
+    pills.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Bounce on edges
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+
+      // Apply position to DOM element
+      p.style.left = p.x + 'px';
+      p.style.top  = p.y + 'px';
+    });
+
+    // 2️⃣ Find nearest pill
+    let nearest = null,
+        minDist = Infinity;
+    pills.forEach(p => {
+      const dx = p.x - pacman.x,
+            dy = p.y - pacman.y,
+            d  = Math.hypot(dx, dy);
+      if (d < minDist) {
+        minDist = d;
+        nearest = p;
       }
+    });
+
+    // 3️⃣ Eat if close enough
+    if (!isEating && nearest && minDist < pacman.r) {
+      handleEat(nearest);
     }
 
-    function checkJackpot() {
-      const reels = document.querySelectorAll('.reel');
-      let jackpotCount = 0;
-
-      reels.forEach(reel => {
-        const middleSymbol = reel.children[1]; // middle row
-        if (middleSymbol.querySelector("img.jackpot")) {
-          jackpotCount++;
-        }
-      });
-
-      if (jackpotCount === 5) {
-        alert("🎉 JACKPOT! Redirecting to Discord...");
-        setTimeout(() => {
-          window.location.href = "https://discord.com/invite/113377x";
-        }, 1500);
-      }
+    // 4️⃣ Adjust Pac‑Man direction toward nearest pill
+    if (nearest) {
+      const dx = nearest.x - pacman.x,
+            dy = nearest.y - pacman.y,
+            d  = Math.hypot(dx, dy);
+      pacman.dir.x = dx / d;
+      pacman.dir.y = dy / d;
     }
 
-    function spin() {
-      const reels = document.querySelectorAll('.reel');
-      reels.forEach((reel, reelIndex) => {
-        [...reel.children].forEach((symbol, rowIndex) => {
-          setTimeout(() => {
-            symbol.innerHTML = getRandomSymbol();
+    // 5️⃣ Move Pac‑Man
+    pacman.x += pacman.dir.x * pacman.speed;
+    pacman.y += pacman.dir.y * pacman.speed;
 
-            // Check for jackpot after last symbol updates
-            if (reelIndex === 4 && rowIndex === 2) {
-              checkJackpot();
-            }
-          }, rowIndex * 150 + Math.random() * 300);
-        });
-      });
-    }
+    // Wrap around screen
+    if (pacman.x < -pacman.r)         pacman.x = W + pacman.r;
+    else if (pacman.x > W + pacman.r) pacman.x = -pacman.r;
+    if (pacman.y < -pacman.r)         pacman.y = H + pacman.r;
+    else if (pacman.y > H + pacman.r) pacman.y = -pacman.r;
 
-    // Initialize on load
-    createReels();
+    // 6️⃣ Render Pac‑Man position & angle
+    const angle = Math.atan2(pacman.dir.y, pacman.dir.x); // radians
+    container.style.transform = `translate(${pacman.x - 32}px, ${pacman.y - 32}px) rotate(${angle}rad)`;
+
+    // 7️⃣ Toggle open/closed mouth based on eating state
+    openSVG.style.display   = isEating ? 'none'  : 'block';
+    closedSVG.style.display = isEating ? 'block' : 'none';
+
+    // 8️⃣ Next frame
+    requestAnimationFrame(update);
+  }
+
+  // Kick off the loop
+  requestAnimationFrame(update);
   </script>
 
-</body>
-</html>
+
+</body></html>
